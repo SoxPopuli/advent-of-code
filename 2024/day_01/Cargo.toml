@@ -1,6 +1,0 @@
-[package]
-name = "day_1"
-version.workspace = true
-edition.workspace = true
-
-[dependencies]

@@ -12,6 +12,183 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-2024-01"
+version = "0.1.0"
+
+[[package]]
+name = "aoc-2024-02"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-03"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-04"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-05"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-06"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-07"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-08"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-09"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-10"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-11"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-12"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-13"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-14"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-15"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-16"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "pathfinding",
+]
+
+[[package]]
+name = "aoc-2024-17"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-18"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "pathfinding",
+]
+
+[[package]]
+name = "aoc-2024-19"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "regex",
+]
+
+[[package]]
+name = "aoc-2024-20"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "pathfinding",
+]
+
+[[package]]
+name = "aoc-2024-21"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "pathfinding",
+]
+
+[[package]]
+name = "aoc-2024-22"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-23"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-24"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
+name = "aoc-2024-25"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -20,183 +197,6 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 [[package]]
 name = "common"
 version = "0.1.0"
-
-[[package]]
-name = "day_1"
-version = "0.1.0"
-
-[[package]]
-name = "day_10"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_11"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_12"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_13"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_14"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_15"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_16"
-version = "0.1.0"
-dependencies = [
- "common",
- "pathfinding",
-]
-
-[[package]]
-name = "day_17"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_18"
-version = "0.1.0"
-dependencies = [
- "common",
- "pathfinding",
-]
-
-[[package]]
-name = "day_19"
-version = "0.1.0"
-dependencies = [
- "common",
- "regex",
-]
-
-[[package]]
-name = "day_2"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_20"
-version = "0.1.0"
-dependencies = [
- "common",
- "pathfinding",
-]
-
-[[package]]
-name = "day_21"
-version = "0.1.0"
-dependencies = [
- "common",
- "pathfinding",
-]
-
-[[package]]
-name = "day_22"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_23"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_24"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_25"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_3"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_4"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_5"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_6"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_7"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_8"
-version = "0.1.0"
-dependencies = [
- "common",
-]
-
-[[package]]
-name = "day_9"
-version = "0.1.0"
-dependencies = [
- "common",
-]
 
 [[package]]
 name = "deprecate-until"
