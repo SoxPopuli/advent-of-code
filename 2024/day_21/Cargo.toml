@@ -1,0 +1,8 @@
+[package]
+name = "day_21"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+common.workspace = true
+pathfinding.workspace = true

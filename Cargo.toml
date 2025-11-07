@@ -1,0 +1,40 @@
+[workspace]
+resolver = "3"
+members = [
+    "common",
+
+    "2024/day_01",
+    "2024/day_02",
+    "2024/day_03",
+    "2024/day_04",
+    "2024/day_05",
+    "2024/day_06",
+    "2024/day_07",
+    "2024/day_08",
+    "2024/day_09",
+    "2024/day_10",
+    "2024/day_11",
+    "2024/day_12",
+    "2024/day_13",
+    "2024/day_14",
+    "2024/day_15",
+    "2024/day_16",
+    "2024/day_17",
+    "2024/day_18",
+    "2024/day_19",
+    "2024/day_20",
+    "2024/day_21",
+    "2024/day_22",
+    "2024/day_23",
+    "2024/day_24",
+    "2024/day_25",
+]
+
+[workspace.package]
+edition = "2024"
+version = "0.1.0"
+
+[workspace.dependencies]
+common = { path = "common" }
+pathfinding = "4.14.0"
+regex = "1.12.2"
