@@ -1,0 +1,8 @@
+[package]
+name = "aoc-2024-20"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+common.workspace = true
+pathfinding.workspace = true

@@ -1,0 +1,6 @@
+[package]
+name = "aoc-2024-01"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
