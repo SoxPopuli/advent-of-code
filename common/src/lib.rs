@@ -1,15 +1,16 @@
 pub mod grid;
+pub mod iter;
 pub mod pipe;
 pub mod pos;
 pub mod vectors;
-pub mod iter;
 
 pub use grid::Grid;
 pub use pipe::{Pipe, Tap};
 pub use pos::Pos;
+use utils::string_stream::StringStream;
 
 use std::{
-    io::Read,
+    io::{Read, StdinLock},
     time::{Duration, Instant},
 };
 
@@ -33,9 +34,10 @@ fn rolling_mean(items: impl IntoIterator<Item = Duration>) -> Duration {
     average
 }
 
-pub fn timed_repeated<Ret>(repeats: u32, func: impl Fn() -> Ret) -> (Duration, Ret) {
+pub fn timed_repeated<const N: usize, Ret>(func: impl Fn() -> Ret) -> (Duration, Ret) {
     let mut res = std::mem::MaybeUninit::uninit();
-    let avg = (0..repeats).map(|_| {
+
+    let avg = (0..N).map(|_| {
         let start = Instant::now();
         res.write(func());
         let end = Instant::now();
@@ -50,6 +52,11 @@ pub fn read_stdin() -> String {
     let mut buf = String::new();
     std::io::stdin().read_to_string(&mut buf).unwrap();
     buf
+}
+
+pub fn stream_stdin() -> StringStream<StdinLock<'static>> {
+    let stdin = std::io::stdin().lock();
+    StringStream::new(stdin)
 }
 
 #[cfg(test)]
