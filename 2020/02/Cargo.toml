@@ -1,0 +1,8 @@
+[package]
+name = "aoc-2020-02"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+common.workspace = true
+regex.workspace = true
