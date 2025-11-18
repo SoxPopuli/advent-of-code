@@ -56,11 +56,12 @@ fn main() {
     });
     println!("Time to parse: {}μs", time_to_parse.as_micros());
 
-    let (time, safe_count) = timed_repeated(10, || lines.iter().filter(|x| is_safe(x)).count());
+    let (time, safe_count) =
+        timed_repeated::<10, _>(|| lines.iter().filter(|x| is_safe(x)).count());
     println!("Part 1: {safe_count} in {}μs", time.as_micros());
 
     let (time, safe_count) =
-        timed_repeated(10, || lines.iter().filter(|x| is_safe_dampened(x)).count());
+        timed_repeated::<10, _>(|| lines.iter().filter(|x| is_safe_dampened(x)).count());
     println!("Part 2: {safe_count} in {}μs", time.as_micros());
 }
 

@@ -12,6 +12,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-2020-01"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "rust-utils",
+]
+
+[[package]]
 name = "aoc-2024-01"
 version = "0.1.0"
 
@@ -197,6 +205,9 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 [[package]]
 name = "common"
 version = "0.1.0"
+dependencies = [
+ "rust-utils",
+]
 
 [[package]]
 name = "deprecate-until"
@@ -316,6 +327,11 @@ name = "regex-syntax"
 version = "0.8.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7a2d987857b319362043e95f5353c0535c1f58eec5336fdfcf626430af7def58"
+
+[[package]]
+name = "rust-utils"
+version = "2.0.0"
+source = "git+https://github.com/SoxPopuli/rust-utils.git?tag=v2.0.0#9e536bc028642d258cd4dae5a59dc6acf5ac670e"
 
 [[package]]
 name = "rustc-hash"

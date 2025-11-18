@@ -3,6 +3,8 @@ resolver = "3"
 members = [
     "common",
 
+    "2020/01",
+
     "2024/01",
     "2024/02",
     "2024/03",
@@ -27,7 +29,7 @@ members = [
     "2024/22",
     "2024/23",
     "2024/24",
-    "2024/25", 
+    "2024/25",
 ]
 
 [workspace.package]
@@ -38,3 +40,11 @@ version = "0.1.0"
 common = { path = "common" }
 pathfinding = "4.14.0"
 regex = "1.12.2"
+
+[workspace.dependencies.utils]
+package = "rust-utils"
+git = "https://github.com/SoxPopuli/rust-utils.git"
+tag = "v2.0.0"
+features = [
+    "string_stream"
+]
