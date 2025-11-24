@@ -10,6 +10,7 @@ members = [
     "2020/05", 
     "2020/06", 
     "2020/07", 
+    "2020/08", 
 
     "2024/01",
     "2024/02",
@@ -46,6 +47,7 @@ version = "0.1.0"
 common = { path = "common" }
 pathfinding = "4.14.0"
 regex = "1.12.2"
+rayon = "1.11.0"
 
 [workspace.dependencies.utils]
 package = "rust-utils"
