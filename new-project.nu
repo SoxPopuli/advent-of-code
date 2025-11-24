@@ -15,4 +15,8 @@ def main [year: int, day: int] {
 
     cd $year_str
     cargo new $day_str --name $"aoc-($year_str)-($day_str)"
+
+    let manifest_path = $"($day_str)/Cargo.toml"
+
+    bash -c $"echo 'common.workspace = true' >> ($manifest_path)"
 }
