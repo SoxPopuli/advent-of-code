@@ -1,6 +1,10 @@
 #!/usr/bin/env nu
 
+const root = path self | path dirname
+
 def main [year: int, day: int] {
+    cd $root
+
     let year_str = $year | into string
 
     let day_str = if $day < 10 {
