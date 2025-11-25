@@ -9,7 +9,7 @@ type Instructions = Vec<(Instruction, isize)>;
 
 fn calc_jmp(ip: usize, value: isize) -> usize {
     if value < 0 {
-        ip - (value.abs() as usize)
+        ip - value.unsigned_abs()
     } else {
         ip + value as usize
     }
@@ -43,15 +43,6 @@ impl State {
             accumulator: 0,
             instructions,
             visited,
-        }
-    }
-
-    fn reset(&mut self) {
-        self.instruction_pointer = 0;
-        self.accumulator = 0;
-
-        for v in self.visited.iter_mut() {
-            *v = false;
         }
     }
 
