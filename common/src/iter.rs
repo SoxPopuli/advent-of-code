@@ -55,6 +55,7 @@ pub fn pairs_iter<T>(
 }
 
 pub trait PairsIter: Iterator + Sized {
+    #[allow(clippy::type_complexity)]
     fn pairs(self) -> FromFn<impl FnMut() -> Option<(Self::Item, Option<Self::Item>)>> {
         pairs_iter(self)
     }
