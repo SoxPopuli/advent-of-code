@@ -1,7 +1,7 @@
 use crate::Pos;
 use std::{
     fmt::Display,
-    ops::{Index, IndexMut},
+    ops::{Index, IndexMut}, 
 };
 
 #[derive(Debug, Clone, PartialEq, Eq)]
