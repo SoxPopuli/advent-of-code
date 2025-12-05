@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 #[derive(Debug)]
 struct BatteryBank(Vec<u8>);
 impl BatteryBank {
@@ -35,17 +37,38 @@ impl BatteryBank {
     }
 
     fn largest_12(&self) -> u64 {
-        let lowest_3 = self.lowest_indices();
-        let mut jolts: u64 = 0;
-
-        for (i, x) in self.0.iter().enumerate() {
-            if !lowest_3.contains(&i) {
-                jolts *= 10;
-                jolts += *x as u64;
+        fn do_loop(
+            values: &[u8],
+            i: usize,
+            remaining: usize,
+            memo: &mut HashMap<String, u64>,
+        ) -> u64 {
+            if i + remaining > values.len() || i == values.len() || remaining == 0 {
+                return 0;
             }
+            let key = format!("{i}:{remaining}");
+
+            if let Some(x) = memo.get(&key) {
+                return *x;
+            }
+
+            let power = 10_u64.pow(remaining as u32 - 1);
+            let num = power * values[i] as u64;
+
+            let value = {
+                let a = num + do_loop(values, i + 1, remaining - 1, memo);
+                let b = do_loop(values, i + 1, remaining, memo);
+
+                a.max(b)
+            };
+
+            memo.insert(key, value);
+
+            value
         }
 
-        dbg!(jolts)
+        let mut memo = HashMap::new();
+        do_loop(&self.0, 0, 12, &mut memo)
     }
 }
 
@@ -70,9 +93,7 @@ fn part1(input: &[BatteryBank]) -> u32 {
 }
 
 fn part2(input: &[BatteryBank]) -> u64 {
-    input.iter()
-        .map(|x| x.largest_12())
-        .sum()
+    input.iter().map(|x| x.largest_12()).sum()
 }
 
 fn main() {
@@ -80,6 +101,9 @@ fn main() {
 
     let (time, result) = common::timed(|| part1(&input));
     println!("Part 1: {result} in {time:?}");
+
+    let (time, result) = common::timed(|| part2(&input));
+    println!("Part 2: {result} in {time:?}");
 }
 
 #[cfg(test)]
