@@ -11,8 +11,8 @@ impl Display for Item {
 type Grid = common::grid2::Grid<Item>;
 
 fn parse_input(input: &str) -> Grid {
-    Grid::from_grid_string(input, |cell| match cell {
-        '@' => Some(Item),
+    Grid::from_grid_string(input, |_, cell| match cell {
+        b'@' => Some(Item),
         _ => None,
     })
 }
