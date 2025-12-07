@@ -24,7 +24,7 @@ impl<T> Grid<T> {
         !is_outside && !is_negative
     }
 
-    pub fn from_grid_string(grid: &str, handle_cell: impl Fn(char) -> Option<T> + Copy) -> Self {
+    pub fn from_grid_string(grid: &str, mut handle_cell: impl FnMut(Pos, u8) -> Option<T> ) -> Self {
         let mut width = 0;
         let mut height = 0;
         let mut items = HashMap::new();
@@ -35,12 +35,12 @@ impl<T> Grid<T> {
             width = width.max(line.len() as isize);
             height += 1;
 
-            for (x, cell) in line.chars().enumerate() {
+            for (x, cell) in line.as_bytes().iter().enumerate() {
                 let pos = Pos {
                     x: x as isize,
                     y: y as isize,
                 };
-                if let Some(cell) = handle_cell(cell) {
+                if let Some(cell) = handle_cell(pos, *cell) {
                     items.insert(pos, cell);
                 }
             }
