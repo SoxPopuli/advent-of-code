@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 use common::Pos;
 
@@ -57,6 +57,34 @@ impl Input {
 
         beam(self.start_pos, &self.grid, &mut HashSet::new())
     }
+
+    fn count_splits_permutations(&self) -> u64 {
+        use common::vectors::*;
+
+        let mut splits: HashMap<Pos, u64> = HashMap::new();
+
+        fn beam(pos: Pos, grid: &Grid, visited: &mut HashMap<Pos, u64>) -> u64 {
+            let next_pos = pos + DOWN;
+
+            if !grid.is_inside(&next_pos) {
+                0
+            } else if grid.get(&next_pos).is_some() {
+                if visited.contains_key(&next_pos) {
+                    *visited.get(&next_pos).unwrap()
+                } else {
+                    let splits =
+                        1 + beam(pos + LEFT, grid, visited) + beam(pos + RIGHT, grid, visited);
+                    visited.insert(next_pos, splits);
+
+                    splits
+                }
+            } else {
+                beam(pos + DOWN, grid, visited)
+            }
+        }
+
+        beam(self.start_pos, &self.grid, &mut splits) + 1
+    }
 }
 
 fn main() {
@@ -65,6 +93,9 @@ fn main() {
 
     let (time, result) = common::timed(|| input.count_splits());
     println!("Part 1: {result} in {time:?}");
+
+    let (time, result) = common::timed(|| input.count_splits_permutations());
+    println!("Part 2: {result} in {time:?}");
 }
 
 #[cfg(test)]
@@ -74,24 +105,25 @@ mod tests {
     #[test]
     fn example() {
         let input = ".......S.......\n\
-                                   ...............\n\
-                                   .......^.......\n\
-                                   ...............\n\
-                                   ......^.^......\n\
-                                   ...............\n\
-                                   .....^.^.^.....\n\
-                                   ...............\n\
-                                   ....^.^...^....\n\
-                                   ...............\n\
-                                   ...^.^...^.^...\n\
-                                   ...............\n\
-                                   ..^...^.....^..\n\
-                                   ...............\n\
-                                   .^.^.^.^.^...^.\n\
-                                   ...............\n";
+                     ...............\n\
+                     .......^.......\n\
+                     ...............\n\
+                     ......^.^......\n\
+                     ...............\n\
+                     .....^.^.^.....\n\
+                     ...............\n\
+                     ....^.^...^....\n\
+                     ...............\n\
+                     ...^.^...^.^...\n\
+                     ...............\n\
+                     ..^...^.....^..\n\
+                     ...............\n\
+                     .^.^.^.^.^...^.\n\
+                     ...............\n";
 
         let grid = Input::new(input);
 
         assert_eq!(grid.count_splits(), 21);
+        assert_eq!(grid.count_splits_permutations(), 40);
     }
 }
