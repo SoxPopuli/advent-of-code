@@ -24,7 +24,7 @@ impl<T> Grid<T> {
         !is_outside && !is_negative
     }
 
-    pub fn from_grid_string(grid: &str, mut handle_cell: impl FnMut(Pos, u8) -> Option<T> ) -> Self {
+    pub fn from_grid_string(grid: &str, mut handle_cell: impl FnMut(Pos, u8) -> Option<T>) -> Self {
         let mut width = 0;
         let mut height = 0;
         let mut items = HashMap::new();

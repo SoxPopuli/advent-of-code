@@ -59,7 +59,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use crate::{blink_multiple, split_number, Memo};
+    use crate::{Memo, blink_multiple, split_number};
 
     #[test]
     fn split_tests() {

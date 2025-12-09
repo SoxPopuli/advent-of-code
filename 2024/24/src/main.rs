@@ -1,4 +1,4 @@
-use common::{timed, Tap};
+use common::{Tap, timed};
 use std::collections::{HashMap, HashSet};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

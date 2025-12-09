@@ -1,7 +1,7 @@
 use common::timed;
 use std::{
     io::Read,
-    iter::{from_fn, Peekable},
+    iter::{Peekable, from_fn},
 };
 
 #[derive(Debug, Clone, PartialEq, Eq)]

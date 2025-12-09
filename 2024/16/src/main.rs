@@ -1,4 +1,4 @@
-use common::{ vectors, timed };
+use common::{timed, vectors};
 use std::{fmt::Display, hash::Hash};
 
 type HashSet<T> = std::collections::HashSet<T>;
@@ -131,10 +131,7 @@ fn find_paths_a_star(m @ Map { start, end, .. }: &Map) -> Vec<Vec<Vector>> {
             let num_rotations = current.heading.num_rotations(&heading);
             let score = current.pos.distance(&p) as u64 + (1000 * num_rotations as u64);
 
-            succ.push((Vector {
-                pos: p,
-                heading
-            }, score))
+            succ.push((Vector { pos: p, heading }, score))
         }
 
         succ
@@ -243,16 +240,13 @@ fn count_path(path: &[Vector]) -> u64 {
     total + path.len() as u64 - 1
 }
 
-fn count_tiles<'a, I, U>(paths: I) -> usize 
-    where 
-        I: Iterator<Item = U>,
-        U: IntoIterator<Item = &'a Vector>
+fn count_tiles<'a, I, U>(paths: I) -> usize
+where
+    I: Iterator<Item = U>,
+    U: IntoIterator<Item = &'a Vector>,
 {
-    let positions: HashSet<_> = paths
-        .flatten()
-        .map(|x| x.pos)
-        .collect();
-    
+    let positions: HashSet<_> = paths.flatten().map(|x| x.pos).collect();
+
     positions.len()
 }
 

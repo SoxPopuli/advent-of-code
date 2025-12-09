@@ -188,7 +188,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use crate::{find_trails, find_trails_distinct, Grid};
+    use crate::{Grid, find_trails, find_trails_distinct};
 
     #[test]
     fn grid_test() {

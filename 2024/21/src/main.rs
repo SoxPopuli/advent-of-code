@@ -1,6 +1,6 @@
 #![allow(clippy::comparison_chain)]
 
-use common::{timed, Pos};
+use common::{Pos, timed};
 use std::{
     collections::{HashMap, VecDeque},
     fmt::Display,

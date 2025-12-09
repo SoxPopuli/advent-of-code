@@ -1,7 +1,7 @@
 use std::{
     collections::HashSet,
     hash::Hash,
-    iter::{from_fn, FromFn},
+    iter::{FromFn, from_fn},
 };
 
 #[derive(Debug)]

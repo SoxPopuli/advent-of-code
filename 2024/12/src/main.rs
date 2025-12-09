@@ -1,4 +1,4 @@
-use common::{timed, vectors, Pos};
+use common::{Pos, timed, vectors};
 use std::collections::HashSet;
 
 #[derive(Debug)]
