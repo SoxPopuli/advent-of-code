@@ -1,4 +1,4 @@
-use common::{timed, iter::PairsIter};
+use common::{iter::PairsIter, timed};
 use std::{
     fmt::{Display, Write},
     iter::{from_fn, repeat_n},

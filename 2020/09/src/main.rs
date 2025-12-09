@@ -66,9 +66,16 @@ fn try_find_contiguous_sum(target: u64, values: &[u64], width: usize) -> Option<
 fn part_2(values: Values, target: u64) -> u64 {
     for width in 2..100 {
         if let Some(range) = try_find_contiguous_sum(target, &values.items, width) {
-
-            let min = values.items[range.start..=range.end].iter().copied().min().unwrap();
-            let max = values.items[range.start..=range.end].iter().copied().max().unwrap();
+            let min = values.items[range.start..=range.end]
+                .iter()
+                .copied()
+                .min()
+                .unwrap();
+            let max = values.items[range.start..=range.end]
+                .iter()
+                .copied()
+                .max()
+                .unwrap();
 
             return min + max;
         }

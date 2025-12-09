@@ -1,4 +1,4 @@
-use common::{timed, Grid, Pos};
+use common::{Grid, Pos, timed};
 use pathfinding::directed::dijkstra::dijkstra;
 use std::{collections::HashMap, fmt::Display};
 

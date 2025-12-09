@@ -1,4 +1,4 @@
-use common::{timed, vectors, Grid, Pos};
+use common::{Grid, Pos, timed, vectors};
 use std::{
     collections::HashSet,
     fmt::{Display, Write},
