@@ -109,10 +109,11 @@ fn search_all_directions_2(data: &Array, x: usize, y: usize) -> bool {
     }
 
     let diagonals = get_diagonals(data, x, y);
-    if let Some(diagonals) = diagonals {
-        if has_up_right_diagonal(&diagonals) && has_down_right_diagonal(&diagonals) {
-            return true;
-        }
+    if let Some(diagonals) = diagonals
+        && has_up_right_diagonal(&diagonals)
+        && has_down_right_diagonal(&diagonals)
+    {
+        return true;
     }
 
     false
@@ -151,7 +152,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use crate::{find_matches, find_matches_2, string_to_array, Vec2d};
+    use crate::{Vec2d, find_matches, find_matches_2, string_to_array};
 
     #[test]
     fn two_dimensional_array_test() {

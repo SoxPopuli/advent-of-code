@@ -24,7 +24,7 @@ fn blink(n: u8, stone: u64, memo: &mut Memo) -> u64 {
         *stored
     } else if stone == 0 {
         blink(n - 1, 1, memo)
-    } else if count_digits(stone) % 2 == 0 {
+    } else if count_digits(stone).is_multiple_of(2) {
         let (high, low) = split_number(stone);
         blink(n - 1, high, memo) + blink(n - 1, low, memo)
     } else {

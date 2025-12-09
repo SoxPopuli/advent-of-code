@@ -16,26 +16,6 @@ impl BatteryBank {
         max
     }
 
-    fn lowest_indices(&self) -> [usize; 3] {
-        let mut lowest = [0; 3];
-
-        let sorted = {
-            let mut x = self.0.iter().enumerate().collect::<Vec<_>>();
-
-            x.sort_by(|a, b| a.1.cmp(b.1));
-
-            x
-        };
-
-        let lowest_3 = &sorted[..3];
-
-        for (i, (idx, _)) in lowest_3.iter().enumerate() {
-            lowest[i] = *idx;
-        }
-
-        lowest
-    }
-
     fn largest_12(&self) -> u64 {
         fn do_loop(
             values: &[u8],
