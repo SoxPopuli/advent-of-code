@@ -204,11 +204,71 @@ fn part1(machines: &[Machine]) -> usize {
     machines.iter().map(machine_button_presses).sum()
 }
 
+fn solve_machine(machine: &Machine) -> u64 {
+    use z3::{Solver, ast::Int};
+
+    let solver = Solver::new();
+
+    let btn_vars = machine
+        .buttons
+        .iter()
+        .enumerate()
+        .map(|(i, _)| Int::new_const(format!("a{i}")))
+        .collect::<Vec<_>>();
+
+    for b in &btn_vars {
+        solver.assert(b.ge(0));
+    }
+
+    for (i, v) in machine.jolts.iter().enumerate() {
+        let jolt_vars = machine
+            .buttons
+            .iter()
+            .enumerate()
+            .filter_map(|(j, btn)| {
+                if btn.indices.contains(&(i as u8)) {
+                    Some(&btn_vars[j])
+                } else {
+                    None
+                }
+            })
+            .collect::<Vec<_>>();
+
+        if !jolt_vars.is_empty() {
+            let sum = Int::add(jolt_vars.as_slice());
+            solver.assert(sum.eq(Int::from_u64(*v as u64)));
+        }
+    }
+
+    let mut n = 0;
+    while let z3::SatResult::Sat = solver.check() {
+        let model = solver.get_model().unwrap();
+        n = btn_vars
+            .iter()
+            .map(|x| model.eval(x, true).unwrap().as_u64().unwrap())
+            .sum();
+
+        let sum = Int::add(btn_vars.as_slice());
+        solver.assert(sum.lt(Int::from_u64(n)));
+    }
+
+    n
+}
+
+fn part2(machines: &[Machine]) -> u64 {
+    machines.iter()
+        .map(solve_machine)
+        .sum()
+}
+
 fn main() {
     let machines = parse_input(&common::read_stdin());
 
     let (time, result) = common::timed(|| part1(&machines));
     println!("Part 1: {result} in {time:?}");
+
+    let (time, result) = common::timed(|| part2(&machines));
+    println!("Part 2: {result} in {time:?}");
 }
 
 #[cfg(test)]
@@ -234,6 +294,7 @@ mod tests {
         "#;
         let input = parse_input(input);
         assert_eq!(part1(&input), 7);
+        assert_eq!(part2(&input), 33);
     }
 
     #[test]
@@ -266,5 +327,37 @@ mod tests {
         };
 
         assert_eq!(machine_button_presses(&machine), 3);
+    }
+
+    #[test]
+    fn solve() {
+        let machine = Machine {
+            lights: Lights::from_string("[.##.]"),
+            buttons: vec![
+                Button::new(&[3]),
+                Button::new(&[1, 3]),
+                Button::new(&[2]),
+                Button::new(&[2, 3]),
+                Button::new(&[0, 2]),
+                Button::new(&[0, 1]),
+            ],
+            jolts: vec![3, 5, 4, 7],
+        };
+
+        assert_eq!(solve_machine(&machine), 10);
+
+        let machine = Machine {
+            lights: Lights::from_string("[...#.]"),
+            buttons: vec![
+                Button::new(&[0, 2, 3, 4]),
+                Button::new(&[2, 3]),
+                Button::new(&[0, 4]),
+                Button::new(&[0, 1, 2]),
+                Button::new(&[1, 2, 3, 4]),
+            ],
+            jolts: vec![7, 5, 12, 7, 2],
+        };
+
+        assert_eq!(solve_machine(&machine), 12);
     }
 }

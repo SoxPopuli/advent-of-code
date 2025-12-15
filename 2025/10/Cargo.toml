@@ -6,3 +6,4 @@ version.workspace = true
 [dependencies]
 common.workspace = true
 itertools.workspace = true
+z3.workspace = true
