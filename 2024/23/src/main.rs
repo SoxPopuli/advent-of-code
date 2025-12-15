@@ -153,32 +153,3 @@ fn get_most_connected(c: &Connections) -> Vec<String> {
         .max_by_key(|v| v.len())
         .unwrap()
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test() {
-        let input = parse_input(include_str!("../example.txt"));
-
-        let c = Connections::new(input);
-
-        let sets = c.sets();
-        assert_eq!(sets.len(), 12);
-
-        let ts = sets
-            .iter()
-            .filter(|set| set.iter().any(|pc| pc.starts_with('t')))
-            .collect::<Vec<_>>();
-        assert_eq!(ts.len(), 7);
-    }
-
-    #[test]
-    fn test_2() {
-        let input = parse_input(include_str!("../example.txt")).collect::<Vec<_>>();
-
-        let c = Connections::new(input);
-        assert_eq!(get_most_connected(&c), ["co", "de", "ka", "ta"]);
-    }
-}

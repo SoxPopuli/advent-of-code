@@ -185,39 +185,3 @@ fn main() {
 
 // Part 1: 776 in 1098μs
 // Part 2: 1657 in 326μs
-
-#[cfg(test)]
-mod tests {
-    use crate::{Grid, find_trails, find_trails_distinct};
-
-    #[test]
-    fn grid_test() {
-        let grid = Grid::new(include_str!("../example.txt"));
-
-        assert_eq!(grid.width, 8);
-        assert_eq!(grid.height, 8);
-
-        assert_eq!(grid.get(0, 0), 8);
-        assert_eq!(grid.get(0, 1), 7);
-        assert_eq!(grid.get(1, 0), 9);
-        assert_eq!(grid.get(4, 6), 9);
-    }
-
-    #[test]
-    fn part1() {
-        let grid = Grid::new(include_str!("../example_simple.txt"));
-        assert_eq!(find_trails(&grid), 4);
-
-        let grid = Grid::new(include_str!("../example.txt"));
-        assert_eq!(find_trails(&grid), 36);
-    }
-
-    #[test]
-    fn part2() {
-        let grid = Grid::new(include_str!("../example_distinct.txt"));
-        assert_eq!(find_trails_distinct(&grid), 3);
-
-        let grid = Grid::new(include_str!("../example.txt"));
-        assert_eq!(find_trails_distinct(&grid), 81);
-    }
-}

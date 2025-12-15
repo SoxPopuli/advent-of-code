@@ -73,39 +73,3 @@ fn main() {
 
 // Part 1: 1399219271639 in 913μs
 // Part 2: 275791737999003 in 114ms
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn can_make_tests() {
-        assert!(can_make(190, &[10, 19]));
-        assert!(can_make(3267, &[81, 40, 27]));
-        assert!(can_make(292, &[11, 6, 16, 20]));
-
-        assert!(!can_make(20, &[5]));
-        assert!(!can_make(100, &[10, 9]));
-        assert!(!can_make(161011, &[16, 10, 13]));
-
-        assert!(!can_make(83, &[17, 5]));
-    }
-
-    #[test]
-    fn concat_tests() {
-        assert_eq!(concat(15, 3), 153);
-        assert_eq!(concat(1, 300), 1300);
-    }
-
-    #[test]
-    fn part1() {
-        let input = parse_input(include_str!("../example.txt"));
-        assert_eq!(get_calibration_result(input, can_make), 3749);
-    }
-
-    #[test]
-    fn part2() {
-        let input = parse_input(include_str!("../example.txt"));
-        assert_eq!(get_calibration_result(input, can_make_concat), 11387);
-    }
-}

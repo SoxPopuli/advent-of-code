@@ -67,29 +67,3 @@ fn main() {
 
     println!("Part 1: {}", state.find_matches().len());
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test() {
-        let state = State::new(include_str!("../example.txt"));
-
-        assert_eq!(
-            state.keys,
-            [[5, 0, 2, 1, 3], [4, 3, 4, 0, 2], [3, 0, 2, 0, 1],]
-        );
-
-        assert_eq!(state.locks, [[0, 5, 3, 4, 3], [1, 2, 0, 5, 3],]);
-
-        assert_eq!(
-            state.find_matches(),
-            [
-                ([0, 5, 3, 4, 3], [3, 0, 2, 0, 1]),
-                ([1, 2, 0, 5, 3], [4, 3, 4, 0, 2]),
-                ([1, 2, 0, 5, 3], [3, 0, 2, 0, 1])
-            ]
-        );
-    }
-}

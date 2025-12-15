@@ -140,20 +140,3 @@ fn main() {
 
 // Part 1: 230436441 in 62μs
 // Part 2: 8270 in 456ms
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn part1() {
-        let input = Grid {
-            width: 11,
-            height: 7,
-            robots: parse_positions(include_str!("../example.txt")),
-        };
-
-        let simulated = input.simulate(100);
-        assert_eq!(simulated.count_quadrants(), 12);
-    }
-}

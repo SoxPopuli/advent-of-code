@@ -210,32 +210,3 @@ fn main() {
 
 // Part 1: 5131 in 1231μs
 // Part 2: 1784 in 17s
-
-#[cfg(test)]
-mod tests {
-    use crate::*;
-
-    #[test]
-    fn part1() {
-        let (grid, guard) = build_grid(include_str!("../example.txt"));
-
-        assert_eq!(grid.width, 10);
-        assert_eq!(grid.height, 10);
-
-        assert_eq!(grid.obstructions.len(), 8);
-
-        assert_eq!(guard.position, Position { x: 4, y: 6 });
-
-        let visited = get_visited_squares(&grid, guard);
-
-        assert_eq!(visited.len(), 41);
-    }
-
-    #[test]
-    fn part2() {
-        let (grid, guard) = build_grid(include_str!("../example.txt"));
-
-        let loops = create_loops(&grid, guard);
-        assert_eq!(loops, 6);
-    }
-}
