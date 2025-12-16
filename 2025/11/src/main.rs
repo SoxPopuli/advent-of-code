@@ -55,11 +55,57 @@ fn find_paths(devices: &Devices) -> u64 {
     find_next(devices, "you", &mut seen)
 }
 
+fn find_paths_2(devices: &Devices) -> u64 {
+    type Memo = HashMap<(String, bool, bool), u64>;
+
+    let mut seen = Memo::new();
+
+    fn find_next(
+        devices: &Devices,
+        current_device: &str,
+        dac: bool,
+        fft: bool,
+        seen: &mut Memo,
+    ) -> u64 {
+        if let Some(&x) = seen.get(&(current_device.to_string(), dac, fft)) {
+            return x;
+        }
+
+        let mut total = 0;
+
+        for device in devices
+            .get(current_device)
+            .iter()
+            .flat_map(|x| x.as_slice())
+        {
+            if device == "dac" {
+                total += find_next(devices, device.as_str(), true, fft, seen);
+            } else if device == "fft" {
+                total += find_next(devices, device.as_str(), dac, true, seen);
+            } else if device == "out" {
+                if dac && fft {
+                    total += 1;
+                }
+            } else {
+                total += find_next(devices, device.as_str(), dac, fft, seen);
+            }
+        }
+
+        seen.insert((current_device.to_string(), dac, fft), total);
+        total
+    }
+
+    find_next(devices, "svr", false, false, &mut seen)
+}
+
 fn main() {
     let devices = parse_input(&common::read_stdin());
 
     let (time, result) = common::timed(|| find_paths(&devices));
     println!("Part 1: {result} in {time:?}");
+
+    let (time, result) = common::timed(|| find_paths_2(&devices));
+    println!("Part 2: {result} in {time:?}");
 }
 
 #[cfg(test)]
@@ -82,5 +128,26 @@ mod tests {
         "#;
         let input = parse_input(input);
         assert_eq!(find_paths(&input), 5);
+    }
+
+    #[test]
+    fn example_2() {
+        let input = r#"
+            svr: aaa bbb
+            aaa: fft
+            fft: ccc
+            bbb: tty
+            tty: ccc
+            ccc: ddd eee
+            ddd: hub
+            hub: fff
+            eee: dac
+            dac: fff
+            fff: ggg hhh
+            ggg: out
+            hhh: out
+        "#;
+        let input = parse_input(input);
+        assert_eq!(find_paths_2(&input), 2);
     }
 }
